@@ -11,8 +11,7 @@ import java.util.Optional;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 
-    @Query(value = "select * from 'user' u where u.isu_id = :isuId " +
-            "and u.password = :password", nativeQuery = true)
+    @Query(value = "select u from User u where u.isuId = :isuId and u.password = :password")
     Optional<User> getByIsuIdAndPassword(@Param("isuId") Integer isuId, @Param("password") String password);
 
     @Query(value = "select u from User u where u.token = :token")
